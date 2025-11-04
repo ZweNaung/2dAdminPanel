@@ -48,4 +48,5 @@ object ApiService {
     val dataEntryApiService: DataEntryApiService =retrofit.create(DataEntryApiService::class.java)
 
     val omenApiService: OmenApiService = retrofit.create(OmenApiService::class.java)
+
 }

@@ -72,3 +72,46 @@ data class Data(
     @SerialName("name")
     val name: String
 )}
+
+//Delete
+@Serializable
+data class OmenDeleteResponseDto(
+    @SerialName("success")
+    val success: Boolean,
+    @SerialName("message")
+    val message: String,
+    @SerialName("data")
+    val `data`: Data
+) {
+    @Serializable
+    data class Data(
+        @SerialName("_id")
+        val id: String,
+        @SerialName("name")
+        val name: String
+    )
+}
+
+
+//update
+@Serializable
+data class OmenUpdateResponseDto(
+    @SerialName("success")
+    val success: Boolean,
+    @SerialName("message")
+    val message: String,
+    @SerialName("data")
+    val `data`: Data
+) {
+    @Serializable
+    data class Data(
+        @SerialName("_id")
+        val id: String,
+        @SerialName("name")
+        val name: String,
+        @SerialName("imgUrl")
+        val imgUrl: String,
+        @SerialName("__v")
+        val v: Int
+    )
+}

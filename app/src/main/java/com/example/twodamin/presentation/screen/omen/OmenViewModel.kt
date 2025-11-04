@@ -6,6 +6,8 @@ import android.provider.OpenableColumns
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.twodamin.data.remote.dto.OmenDeleteResponseDto
+import com.example.twodamin.data.remote.dto.OmenUpdateResponseDto
 import com.example.twodamin.data.remote.dto.OmenUploadResponseDto
 import com.example.twodamin.data.remote.dto.OmenViewAllResponseDto
 import com.example.twodamin.data.repository.OmenRepository
@@ -29,6 +31,14 @@ class OmenViewModel(private val repository: OmenRepository): ViewModel() {
     //---Data Upload State
     private val _uploadState = MutableStateFlow<Resource<OmenUploadResponseDto.Data?>>(Resource.Idle())
     val uploadState : StateFlow<Resource<OmenUploadResponseDto.Data?>> = _uploadState
+
+    // -- delete State
+    private val _deleteState = MutableStateFlow<Resource<OmenDeleteResponseDto.Data?>>(Resource.Idle())
+    val deleteSate : StateFlow<Resource<OmenDeleteResponseDto.Data?>> = _deleteState
+
+    //update State
+    private var _updateState = MutableStateFlow<Resource<OmenUpdateResponseDto.Data?>>(Resource.Idle())
+    val updateState : StateFlow<Resource<OmenUpdateResponseDto.Data?>> = _updateState
 
     //Get All Data
     fun fetchGetAllData(){
@@ -99,6 +109,79 @@ class OmenViewModel(private val repository: OmenRepository): ViewModel() {
                 _uploadState.value = Resource.Error(message = "Upload Error: ${e.message}")
             }
         }
+    }
+
+    //delete omen
+    fun deleteOmen(
+        omenId: String
+    ){
+        viewModelScope.launch {
+            _deleteState.value = Resource.Loading()
+            try {
+                val response = repository.deleteOmen(omenId = omenId)
+                if (response.success){
+                    _deleteState.value = Resource.Success(response.data)
+                    fetchGetAllData()
+                }else{
+                    _deleteState.value = Resource.Error(message = response.message)
+                }
+            }catch (e: HttpException){
+
+            }catch (e: Exception){
+                _deleteState.value = Resource.Error(message = "Delete Error :${e.message}")
+            }
+        }
+    }
+    fun resetDeleteState(){
+        _deleteState.value = Resource.Idle()
+    }
+
+    //update
+    fun updateOmen(
+        omenId: String,
+        newName:String?,
+        newImageUri:Uri?,
+        contentResolver: ContentResolver
+    ){
+
+        viewModelScope.launch {
+            _updateState.value = Resource.Loading()
+            try {
+
+                val nameRequestBody = newName?.toRequestBody("text/plain".toMediaType())
+                val imagePart = newImageUri?.let { uriToMultipartBodyPart(it,contentResolver) }
+
+                if(nameRequestBody == null && imagePart == null){
+                    _updateState.value = Resource.Error(message = "No new data to update")
+                    return@launch
+                }
+                val  response = repository.updateOmen(
+                    omenId = omenId,
+                    name = nameRequestBody,
+                    image = imagePart
+                )
+
+                if(response.success){
+                    _updateState.value = Resource.Success(response.data)
+                    fetchGetAllData()
+                }else{
+                    _updateState.value = Resource.Error(message = response.message)
+                }
+
+                }catch (e: HttpException){
+                val message = when (e.code()) {
+                    404 -> "404 Not Found"
+                    500 -> "500 Server Error"
+                    else -> "HTTP Error: ${e.code()}"}
+                    _updateState.value = Resource.Error(message = message)
+                }catch (e: Exception){
+                _updateState.value = Resource.Error(message ="Update failed :${e.message}")
+                Log.d("update", { e.message }.toString())
+                }
+        }
+    }
+    fun resetUpdateState() {
+        _updateState.value = Resource.Idle()
     }
 }
 
