@@ -63,7 +63,7 @@ fun OmenAllViewScreen(
 
     //Get All Data
     LaunchedEffect(Unit) {
-        viewModel.fetchGetAllData()
+        viewModel.fetchGetAllOmens()
     }
 
     //Delete Data

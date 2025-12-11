@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -32,7 +34,9 @@ class MainActivity : ComponentActivity() {
                     },
                     modifier = Modifier.fillMaxSize()) { innerPadding ->
                    val innerPadding = innerPadding
+                    Box(modifier = Modifier.padding(innerPadding)){
                     NavGraph(navController)
+                    }
                 }
 
             }
