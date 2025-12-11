@@ -1,11 +1,16 @@
 package com.example.twodamin.presentation.screen.omen
 
 import android.content.ContentResolver
+import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import coil.compose.rememberAsyncImagePainter
 import com.example.twodamin.data.remote.dto.OmenDeleteResponseDto
 import com.example.twodamin.data.remote.dto.OmenUpdateResponseDto
 import com.example.twodamin.data.remote.dto.OmenUploadResponseDto
@@ -40,8 +45,9 @@ class OmenViewModel(private val repository: OmenRepository): ViewModel() {
     private var _updateState = MutableStateFlow<Resource<OmenUpdateResponseDto.Data?>>(Resource.Idle())
     val updateState : StateFlow<Resource<OmenUpdateResponseDto.Data?>> = _updateState
 
+
     //Get All Data
-    fun fetchGetAllData(){
+    fun fetchGetAllOmens(){
         viewModelScope.launch {
             try {
                 val response : OmenViewAllResponseDto = repository.getAllOmen()
@@ -93,7 +99,7 @@ class OmenViewModel(private val repository: OmenRepository): ViewModel() {
                 )
                 if(response.success){
                     _uploadState.value = Resource.Success(response.data)
-                    fetchGetAllData()
+                    fetchGetAllOmens()
                 }else{
                     _uploadState.value = Resource.Error(message = response.message)
                 }
@@ -121,7 +127,7 @@ class OmenViewModel(private val repository: OmenRepository): ViewModel() {
                 val response = repository.deleteOmen(omenId = omenId)
                 if (response.success){
                     _deleteState.value = Resource.Success(response.data)
-                    fetchGetAllData()
+                    fetchGetAllOmens()
                 }else{
                     _deleteState.value = Resource.Error(message = response.message)
                 }
@@ -163,7 +169,7 @@ class OmenViewModel(private val repository: OmenRepository): ViewModel() {
 
                 if(response.success){
                     _updateState.value = Resource.Success(response.data)
-                    fetchGetAllData()
+                    fetchGetAllOmens()
                 }else{
                     _updateState.value = Resource.Error(message = response.message)
                 }
