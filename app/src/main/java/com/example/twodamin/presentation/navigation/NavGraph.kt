@@ -16,6 +16,8 @@ import com.example.twodamin.presentation.screen.home.time_screen.ThreeScreen
 import com.example.twodamin.presentation.screen.home.time_screen.TimeScreen
 import com.example.twodamin.presentation.screen.home.time_screen.TwelveScreen
 import com.example.twodamin.presentation.screen.omen.OmenAllViewScreen
+import com.example.twodamin.presentation.screen.threeD.ThreeDEditScreen
+import com.example.twodamin.presentation.screen.threeD.ThreeDScreen
 
 @Composable
 fun NavGraph(navController : NavHostController){
@@ -30,7 +32,7 @@ fun NavGraph(navController : NavHostController){
         composable(route = BottomNavItems.Edit.route){ EditScreen() }
         composable(route = BottomNavItems.Omen.route){ OmenScreen(navController = navController) }
         composable(route = BottomNavItems.Lucky.route){ LuckyScreen() }
-        composable(route = BottomNavItems.Other.route){ OtherScreen() }
+        composable(route = BottomNavItems.Other.route){ OtherScreen(navController = navController) }
 
         composable(route = TimeScreen.Eleven.route) { ElevenAmScreen() }
         composable(route=TimeScreen.Twelve.route) { TwelveScreen() }
@@ -38,6 +40,8 @@ fun NavGraph(navController : NavHostController){
         composable(route= TimeScreen.Four.route) { FourScreen()}
 
         composable(route = "omenAllViewScreen"){ OmenAllViewScreen() }
+        composable(route="threeDScreen"){ ThreeDScreen( navController = navController) }
+        composable(route = "threeDEditScreen"){ ThreeDEditScreen() }
     }
 }
 
