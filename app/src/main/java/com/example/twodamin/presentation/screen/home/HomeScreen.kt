@@ -3,6 +3,7 @@ package com.example.twodamin.presentation.screen.home
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedTextField
@@ -37,22 +39,41 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.twodamin.data.remote.ApiService
 import com.example.twodamin.data.repository.ModernRepositoryImp
+import com.example.twodamin.data.repository.UpdateResultRepositoryImpl
 import com.example.twodamin.presentation.screen.home.time_screen.TimeScreen
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun HomeScreen(
     navController: NavHostController,
-    viewModel: ModernViewModel= viewModel(
+    viewModel: ModernViewModel = viewModel(
         factory = ModernViewModelFactory(
-    ModernRepositoryImp(
-            api = ApiService.modernApiService
-        )
+            ModernRepositoryImp(
+                api = ApiService.modernApiService
+            )
         )
     )
-){
+) {
     val state = viewModel.state.collectAsState()
     val context = LocalContext.current
+
+    //updateResult
+    val apiService = ApiService.updateResultApiService
+    val repository = remember { UpdateResultRepositoryImpl(apiService) }
+    val factory = remember { UpdateResultViewModelFactory(repository) }
+    val updateResultViewModel: UpdateResultViewModel = viewModel(factory = factory)
+    var updateResultShowDialog by remember { mutableStateOf(false) }
+    var updateResultSelectedSession by remember { mutableStateOf("") }
+
+    var updateResultTwoDInput by remember { mutableStateOf("") }
+    var updateResultSetInput by remember { mutableStateOf("") }
+    var updateResultValueInput by remember { mutableStateOf("") }
+    fun clearInputs() {
+        updateResultTwoDInput = ""
+        updateResultSetInput = ""
+        updateResultValueInput = ""
+        updateResultShowDialog = false
+    }
 
     // Dialog state များ
     var showDialog by remember { mutableStateOf(false) }
@@ -69,7 +90,7 @@ fun HomeScreen(
         )
     }
 
-    // Success ဖြစ်တဲ့အခါ Toast ပြခြင်း
+    // Success Toast ပြခြင်း
     LaunchedEffect(state.value.isEntrySuccess) {
         if (state.value.isEntrySuccess) {
             Toast.makeText(context, "သိမ်းဆည်းပြီးပါပြီ", Toast.LENGTH_SHORT).show()
@@ -83,57 +104,7 @@ fun HomeScreen(
         modifier = Modifier
             .fillMaxSize()
     ) {
-
-        Row(
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Button(
-                onClick = {
-                    navController.navigate(TimeScreen.Eleven.route)
-                }
-            ) {
-                Text(text = "11 AM")
-            }
-            Button(
-                onClick = {
-                    navController.navigate(TimeScreen.Twelve.route)
-                }
-            ) {
-                Text(text = "12 PM")
-            }
-
-        }
-        Spacer(modifier = Modifier.height(30.dp))
-        Row(
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-
-            Button(
-                onClick = {
-                    navController.navigate(TimeScreen.Three.route)
-                }
-            ) {
-                Text(text = "3 PM")
-            }
-
-            Button(
-                onClick = {
-                    navController.navigate(TimeScreen.Four.route)
-                }
-            ) {
-                Text(text = "4 PM")
-            }
-        }
-        Spacer(modifier = Modifier.height(10.dp))
-        HorizontalDivider(thickness = 1.dp)
-
-        //Modern and Internet
+//Modern and Internet
         Spacer(modifier = Modifier.height(10.dp))
         Text(
             text = "Modern and Internet",
@@ -165,6 +136,173 @@ fun HomeScreen(
                 Text(text = "2:00")
             }
         }
+
+        Spacer(modifier = Modifier.height(30.dp))
+
+        //ShowResult
+        Row(
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+
+            Button(
+                onClick = {
+                    updateResultSelectedSession = "12:01 PM"
+                    updateResultShowDialog = true
+                }
+            ) {
+                Text(text = "12:01 PM Entry")
+            }
+
+            Button(
+                onClick = {
+                    updateResultSelectedSession = "4:30 PM"
+                    updateResultShowDialog = true
+                }
+            ) {
+                Text(text = "4:30 PM Entry")
+            }
+            // --- Dialog Component ---
+            if (updateResultShowDialog) {
+                AlertDialog(
+                    onDismissRequest = { updateResultShowDialog = false },
+                    title = {
+                        Text(text = "Update Result for $updateResultSelectedSession")
+                    },
+                    text = {
+                        Column(
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            // TwoD Input
+                            OutlinedTextField(
+                                value = updateResultTwoDInput,
+                                onValueChange = {
+                                    if (it.length <= 2) {
+                                        updateResultTwoDInput = it
+                                    } },
+                                label = { Text("TwoD") },
+                                singleLine = true,
+
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                modifier = Modifier.fillMaxWidth()
+                            )
+
+                            // Set Input
+                            OutlinedTextField(
+                                value = updateResultSetInput,
+                                onValueChange = {
+                                    if(it.length <= 6){
+                                    updateResultSetInput = it }},
+                                label = { Text("Set") },
+                                singleLine = true,
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                modifier = Modifier.fillMaxWidth()
+                            )
+
+                            // Value Input
+                            OutlinedTextField(
+                                value = updateResultValueInput,
+                                onValueChange = {
+                                    if(it.length <= 7){
+                                    updateResultValueInput = it }},
+                                label = { Text("Value") },
+                                singleLine = true,
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+                    },
+                    confirmButton = {
+                        Button(
+                            onClick = {
+                                // ViewModel ထဲက function ကိုလှမ်းခေါ်မယ်
+                                if (updateResultTwoDInput.isNotEmpty() && updateResultSetInput.isNotEmpty() && updateResultValueInput.isNotEmpty()) {
+                                    updateResultViewModel.entryResult(
+                                        twoD = updateResultTwoDInput,
+                                        set = updateResultSetInput,
+                                        value = updateResultValueInput,
+                                        session = updateResultSelectedSession
+                                    )
+                                    clearInputs() // ပြီးရင် Dialog ပိတ်ပြီး စာတွေရှင်းမယ်
+                                }
+                            }
+                        ) {
+                            Text("Save")
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(onClick = { updateResultShowDialog = false }) {
+                            Text("Cancel")
+                        }
+                    }
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+        HorizontalDivider(thickness = 2.dp, color = Color.Red)
+
+        Text(
+            text = "For History",
+            fontSize = 16.sp,
+            color = Color.Red
+        )
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Button(
+                onClick = {
+                    navController.navigate(TimeScreen.Eleven.route)
+                },
+                colors = ButtonDefaults.buttonColors(Color.Blue)
+                            ) {
+                Text(text = "11 AM")
+            }
+            Button(
+                onClick = {
+                    navController.navigate(TimeScreen.Twelve.route)
+                },
+                colors = ButtonDefaults.buttonColors(Color.Blue)
+            ) {
+                Text(text = "12 PM")
+            }
+
+        }
+        Spacer(modifier = Modifier.height(30.dp))
+        Row(
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+
+            Button(
+                onClick = {
+                    navController.navigate(TimeScreen.Three.route)
+                },
+                colors = ButtonDefaults.buttonColors(Color.Blue)
+            ) {
+                Text(text = "3 PM")
+            }
+
+            Button(
+                onClick = {
+                    navController.navigate(TimeScreen.Four.route)
+                },
+                colors = ButtonDefaults.buttonColors(Color.Blue)
+            ) {
+                Text(text = "4 PM")
+            }
+        }
+
+
+
         if (state.value.isLoading) {
             CircularProgressIndicator(modifier = Modifier.padding(16.dp))
         }
@@ -172,7 +310,7 @@ fun HomeScreen(
             Text(text = it, color = Color.Red)
         }
     }
-    }
+}
 
 
 @Composable
@@ -192,8 +330,8 @@ fun ModernEntryDialog(
                 OutlinedTextField(
                     value = modernValue,
                     onValueChange = {
-                        if(it.length <=2){
-                            modernValue=it
+                        if (it.length <= 2) {
+                            modernValue = it
                         }
                     },
                     label = { Text("Modern") },
@@ -204,8 +342,8 @@ fun ModernEntryDialog(
                 OutlinedTextField(
                     value = internetValue,
                     onValueChange = {
-                        if(it.length <= 2){
-                            internetValue= it
+                        if (it.length <= 2) {
+                            internetValue = it
                         }
                     },
                     label = { Text("Internet") },

@@ -7,6 +7,7 @@ import com.example.twodamin.data.remote.api.LuckyApiService
 import com.example.twodamin.data.remote.api.ModernApiService
 import com.example.twodamin.data.remote.api.OmenApiService
 import com.example.twodamin.data.remote.api.ThreeDApiService
+import com.example.twodamin.data.remote.api.UpdateResultApiService
 import com.example.twodamin.presentation.screen.home.time_screen.TimeScreen
 import com.example.twodamin.util.Constants
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -58,4 +59,6 @@ object ApiService {
     val threeDApiService : ThreeDApiService = retrofit.create(ThreeDApiService::class.java)
 
     val modernApiService: ModernApiService = retrofit.create(ModernApiService::class.java)
+
+    val updateResultApiService: UpdateResultApiService = retrofit.create(UpdateResultApiService::class.java)
 }
