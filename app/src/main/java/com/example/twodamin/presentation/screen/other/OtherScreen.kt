@@ -40,7 +40,7 @@ fun OtherScreen(navController: NavController){
             Text("3 D")
         }
             Button(
-                onClick = {}
+                onClick = {navController.navigate("thaiLotScreen")}
             ) {
                 Text("Thai Lottery")
             }
@@ -53,7 +53,9 @@ fun OtherScreen(navController: NavController){
             verticalAlignment = Alignment.CenterVertically
         ) {
             Button(
-                onClick = {}
+                onClick = {
+                    navController.navigate("myanmarLotScreen")
+                }
             ) {
                 Text("Myanmar Lottery")
             }

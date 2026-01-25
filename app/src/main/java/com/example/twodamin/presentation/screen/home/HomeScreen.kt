@@ -1,9 +1,7 @@
 package com.example.twodamin.presentation.screen.home
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.widget.Toast
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -46,7 +44,7 @@ import com.example.twodamin.presentation.screen.home.time_screen.TimeScreen
 @Composable
 fun HomeScreen(
     navController: NavHostController,
-    viewModel: ModernViewModel = viewModel(
+    modernViewModel: ModernViewModel = viewModel(
         factory = ModernViewModelFactory(
             ModernRepositoryImp(
                 api = ApiService.modernApiService
@@ -54,7 +52,7 @@ fun HomeScreen(
         )
     )
 ) {
-    val state = viewModel.state.collectAsState()
+    val state = modernViewModel.state.collectAsState()
     val context = LocalContext.current
 
     //updateResult
@@ -68,6 +66,7 @@ fun HomeScreen(
     var updateResultTwoDInput by remember { mutableStateOf("") }
     var updateResultSetInput by remember { mutableStateOf("") }
     var updateResultValueInput by remember { mutableStateOf("") }
+
     fun clearInputs() {
         updateResultTwoDInput = ""
         updateResultSetInput = ""
@@ -76,16 +75,16 @@ fun HomeScreen(
     }
 
     // Dialog state များ
-    var showDialog by remember { mutableStateOf(false) }
+    var modernShowDialog by remember { mutableStateOf(false) }
     var selectedTitle by remember { mutableStateOf("") }
 
-    if (showDialog) {
+    if (modernShowDialog) {
         ModernEntryDialog(
             title = selectedTitle,
-            onDismiss = { showDialog = false },
+            onDismiss = { modernShowDialog = false },
             onConfirm = { modern, internet ->
-                viewModel.updateModern(selectedTitle, modern, internet)
-                showDialog = false
+                modernViewModel.updateModern(selectedTitle, modern, internet)
+                modernShowDialog = false
             }
         )
     }
@@ -121,7 +120,7 @@ fun HomeScreen(
             Button(
                 onClick = {
                     selectedTitle = "9:30"
-                    showDialog = true
+                    modernShowDialog = true
                 }
             ) {
                 Text(text = "9:30")
@@ -130,7 +129,7 @@ fun HomeScreen(
             Button(
                 onClick = {
                     selectedTitle = "2:00"
-                    showDialog = true
+                    modernShowDialog = true
                 }
             ) {
                 Text(text = "2:00")
@@ -138,8 +137,13 @@ fun HomeScreen(
         }
 
         Spacer(modifier = Modifier.height(30.dp))
+        Text(
+            text = "Show Update Result",
+            fontSize = 16.sp,
+            color = Color.Red
+        )
 
-        //ShowResult
+        //Show Update Result
         Row(
             horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically,
@@ -184,7 +188,6 @@ fun HomeScreen(
                                     } },
                                 label = { Text("TwoD") },
                                 singleLine = true,
-
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                                 modifier = Modifier.fillMaxWidth()
                             )

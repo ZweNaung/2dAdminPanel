@@ -1,5 +1,6 @@
 package com.example.twodamin.presentation.navigation
 
+import MyanmarLotScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -16,6 +17,7 @@ import com.example.twodamin.presentation.screen.home.time_screen.ThreeScreen
 import com.example.twodamin.presentation.screen.home.time_screen.TimeScreen
 import com.example.twodamin.presentation.screen.home.time_screen.TwelveScreen
 import com.example.twodamin.presentation.screen.omen.OmenAllViewScreen
+import com.example.twodamin.presentation.screen.thaiLot.ThaiLotteryScreen
 import com.example.twodamin.presentation.screen.threeD.ThreeDEditScreen
 import com.example.twodamin.presentation.screen.threeD.ThreeDScreen
 
@@ -42,6 +44,8 @@ fun NavGraph(navController : NavHostController){
         composable(route = "omenAllViewScreen"){ OmenAllViewScreen() }
         composable(route="threeDScreen"){ ThreeDScreen( navController = navController) }
         composable(route = "threeDEditScreen"){ ThreeDEditScreen() }
+        composable(route="myanmarLotScreen"){ MyanmarLotScreen() }
+        composable(route="thaiLotScreen"){ ThaiLotteryScreen() }
     }
 }
 

@@ -5,7 +5,9 @@ import com.example.twodamin.data.remote.api.DailyResultApiService
 import com.example.twodamin.data.remote.api.DataEntryApiService
 import com.example.twodamin.data.remote.api.LuckyApiService
 import com.example.twodamin.data.remote.api.ModernApiService
+import com.example.twodamin.data.remote.api.MyanmarLotApiService
 import com.example.twodamin.data.remote.api.OmenApiService
+import com.example.twodamin.data.remote.api.ThaiLotteryApiService
 import com.example.twodamin.data.remote.api.ThreeDApiService
 import com.example.twodamin.data.remote.api.UpdateResultApiService
 import com.example.twodamin.presentation.screen.home.time_screen.TimeScreen
@@ -61,4 +63,8 @@ object ApiService {
     val modernApiService: ModernApiService = retrofit.create(ModernApiService::class.java)
 
     val updateResultApiService: UpdateResultApiService = retrofit.create(UpdateResultApiService::class.java)
+
+    val myanmarLotApiService: MyanmarLotApiService = retrofit.create(MyanmarLotApiService::class.java)
+
+    val thaiLotteryApiService: ThaiLotteryApiService = retrofit.create(ThaiLotteryApiService::class.java)
 }
