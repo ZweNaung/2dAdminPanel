@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)   // ✅ ဒီလို
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
@@ -32,14 +33,22 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
+
     buildFeatures {
         compose = true
     }
+    packaging {
+        resources {
+            excludes += "messages/JavaOptionBundle.properties"
+            excludes += "kotlin/reflect/reflect.kotlin_builtins"
+        }
+    }
 }
-
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+    }
+}
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -54,7 +63,6 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.ui.text)
-    implementation(libs.androidx.room.compiler.processing.testing)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -89,5 +97,12 @@ dependencies {
     //coil
     implementation("io.coil-kt:coil-compose:2.5.0")
 
+    ksp("androidx.room:room-compiler:2.8.4")
 
+}
+
+configurations {
+    all {
+        exclude(group = "com.google.auto.value", module = "auto-value")
+    }
 }

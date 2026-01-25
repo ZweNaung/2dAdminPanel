@@ -1,0 +1,55 @@
+com.example.twodamin.app-activity-ktx-1.10.1-0 /home/coder/.gradle/caches/8.14/transforms/03e2420a8c0d8833f4a21d6852c38490/transformed/activity-ktx-1.10.1/res
+com.example.twodamin.app-tracing-1.2.0-1 /home/coder/.gradle/caches/8.14/transforms/0a73de52cd8394d2ddb4c35e2d5d0dea/transformed/tracing-1.2.0/res
+com.example.twodamin.app-core-1.16.0-2 /home/coder/.gradle/caches/8.14/transforms/1711d1e5d8bd198b564f8f0d33c1d7ca/transformed/core-1.16.0/res
+com.example.twodamin.app-ui-text-3 /home/coder/.gradle/caches/8.14/transforms/18497366397edf3ddffc3c2f5a1f2cab/transformed/ui-text/res
+com.example.twodamin.app-material-ripple-release-4 /home/coder/.gradle/caches/8.14/transforms/1bc02302a858ddb27fb95fdd4676df6b/transformed/material-ripple-release/res
+com.example.twodamin.app-lifecycle-viewmodel-savedstate-release-5 /home/coder/.gradle/caches/8.14/transforms/204e38dbca94e17d6b6fbe1763ec4c25/transformed/lifecycle-viewmodel-savedstate-release/res
+com.example.twodamin.app-lifecycle-viewmodel-compose-release-6 /home/coder/.gradle/caches/8.14/transforms/241efe43955accce2e0031e719430446/transformed/lifecycle-viewmodel-compose-release/res
+com.example.twodamin.app-material3-release-7 /home/coder/.gradle/caches/8.14/transforms/27733862869396c7c14bae58b5e3897b/transformed/material3-release/res
+com.example.twodamin.app-lifecycle-viewmodel-release-8 /home/coder/.gradle/caches/8.14/transforms/309c7e8c8626f0932e02ca79c2cbdddc/transformed/lifecycle-viewmodel-release/res
+com.example.twodamin.app-customview-poolingcontainer-1.0.0-9 /home/coder/.gradle/caches/8.14/transforms/320a2f5d88fdf1a56fe1a737b89490b6/transformed/customview-poolingcontainer-1.0.0/res
+com.example.twodamin.app-lifecycle-runtime-release-10 /home/coder/.gradle/caches/8.14/transforms/380d9b3240d09208b03d39d0f55718c3/transformed/lifecycle-runtime-release/res
+com.example.twodamin.app-core-viewtree-1.0.0-11 /home/coder/.gradle/caches/8.14/transforms/3a167574c7c8bbac645a333cce66a4b5/transformed/core-viewtree-1.0.0/res
+com.example.twodamin.app-foundation-12 /home/coder/.gradle/caches/8.14/transforms/4046da73635e6acd663c6317831fd6ea/transformed/foundation/res
+com.example.twodamin.app-room-ktx-2.8.4-13 /home/coder/.gradle/caches/8.14/transforms/45c51c5444120f3256bc175941bf0209/transformed/room-ktx-2.8.4/res
+com.example.twodamin.app-annotation-experimental-1.5.0-14 /home/coder/.gradle/caches/8.14/transforms/499242bc3fef4ca75bebb527c60a0e1d/transformed/annotation-experimental-1.5.0/res
+com.example.twodamin.app-lifecycle-livedata-core-ktx-2.9.4-15 /home/coder/.gradle/caches/8.14/transforms/4c9b70b4c8bebc0227707a8c1a92824b/transformed/lifecycle-livedata-core-ktx-2.9.4/res
+com.example.twodamin.app-coil-base-2.5.0-16 /home/coder/.gradle/caches/8.14/transforms/53c069475c3355de6f1e3e5d980ca917/transformed/coil-base-2.5.0/res
+com.example.twodamin.app-ui-graphics-17 /home/coder/.gradle/caches/8.14/transforms/53eaaa69b9ac1f7ab114c71ec9be4879/transformed/ui-graphics/res
+com.example.twodamin.app-emoji2-1.4.0-18 /home/coder/.gradle/caches/8.14/transforms/576d5c44df1cecf03f2f6a8a83f73480/transformed/emoji2-1.4.0/res
+com.example.twodamin.app-core-runtime-2.2.0-19 /home/coder/.gradle/caches/8.14/transforms/5a2a87a1c2050f91eedc24a70e8f62e5/transformed/core-runtime-2.2.0/res
+com.example.twodamin.app-navigation-runtime-ktx-2.7.7-20 /home/coder/.gradle/caches/8.14/transforms/5c6b5fee5d8686f32bd151cac075dd08/transformed/navigation-runtime-ktx-2.7.7/res
+com.example.twodamin.app-appcompat-resources-1.6.1-21 /home/coder/.gradle/caches/8.14/transforms/62233f7246f186f581d24c5012d9531f/transformed/appcompat-resources-1.6.1/res
+com.example.twodamin.app-lifecycle-runtime-compose-release-22 /home/coder/.gradle/caches/8.14/transforms/64a8ed50f433fbc0d30f9b6f00039fb5/transformed/lifecycle-runtime-compose-release/res
+com.example.twodamin.app-navigation-common-ktx-2.7.7-23 /home/coder/.gradle/caches/8.14/transforms/666b46a1c1310b5fafd9db6d40d8cea2/transformed/navigation-common-ktx-2.7.7/res
+com.example.twodamin.app-ui-tooling-24 /home/coder/.gradle/caches/8.14/transforms/6b5662d65d1db237520ce3be662ee195/transformed/ui-tooling/res
+com.example.twodamin.app-window-1.5.0-25 /home/coder/.gradle/caches/8.14/transforms/719336279556ce220b6c9c873d549690/transformed/window-1.5.0/res
+com.example.twodamin.app-startup-runtime-1.1.1-26 /home/coder/.gradle/caches/8.14/transforms/73cbbfb865cbcb8d54492d1c2043b584/transformed/startup-runtime-1.1.1/res
+com.example.twodamin.app-transition-1.6.0-27 /home/coder/.gradle/caches/8.14/transforms/75feda626e7fcab76afa4c31f9a1443a/transformed/transition-1.6.0/res
+com.example.twodamin.app-activity-compose-1.10.1-28 /home/coder/.gradle/caches/8.14/transforms/80b2d4dcea4a9f18ae3774856911a727/transformed/activity-compose-1.10.1/res
+com.example.twodamin.app-core-ktx-1.16.0-29 /home/coder/.gradle/caches/8.14/transforms/8320b237633e42bf4ae9d183f9dd390b/transformed/core-ktx-1.16.0/res
+com.example.twodamin.app-navigation-compose-2.7.7-30 /home/coder/.gradle/caches/8.14/transforms/90dce198bf2b6dc570ff70bbc91db291/transformed/navigation-compose-2.7.7/res
+com.example.twodamin.app-navigation-runtime-2.7.7-31 /home/coder/.gradle/caches/8.14/transforms/97046bf63c14bade0caafe35b5b1e548/transformed/navigation-runtime-2.7.7/res
+com.example.twodamin.app-lifecycle-livedata-core-2.9.4-32 /home/coder/.gradle/caches/8.14/transforms/a182086ff9b20f759a78b0c15f8f8cf4/transformed/lifecycle-livedata-core-2.9.4/res
+com.example.twodamin.app-ui-test-manifest-1.10.0-33 /home/coder/.gradle/caches/8.14/transforms/a1e78cb2f56c9453c5018c0e9e18bfe2/transformed/ui-test-manifest-1.10.0/res
+com.example.twodamin.app-activity-1.10.1-34 /home/coder/.gradle/caches/8.14/transforms/ba7676b37f92b96deb1076c76adc4291/transformed/activity-1.10.1/res
+com.example.twodamin.app-ui-35 /home/coder/.gradle/caches/8.14/transforms/c3f4f9b75116e04262a29552f5ad26c5/transformed/ui/res
+com.example.twodamin.app-lifecycle-viewmodel-ktx-2.9.4-36 /home/coder/.gradle/caches/8.14/transforms/c43139d555dfc5c3862923ec39d2564f/transformed/lifecycle-viewmodel-ktx-2.9.4/res
+com.example.twodamin.app-runtime-saveable-37 /home/coder/.gradle/caches/8.14/transforms/cabff4bbe15ce1da516976e37ce83e06/transformed/runtime-saveable/res
+com.example.twodamin.app-savedstate-release-38 /home/coder/.gradle/caches/8.14/transforms/cdea6662134c645d944fbbb0eff5c964/transformed/savedstate-release/res
+com.example.twodamin.app-lifecycle-livedata-2.9.4-39 /home/coder/.gradle/caches/8.14/transforms/d74cf55fc2fe6dbd580d2621fe02966f/transformed/lifecycle-livedata-2.9.4/res
+com.example.twodamin.app-material-release-40 /home/coder/.gradle/caches/8.14/transforms/df11b14fded31a85ff905e5edb654a2c/transformed/material-release/res
+com.example.twodamin.app-material-icons-core-release-41 /home/coder/.gradle/caches/8.14/transforms/e00ab638bc6f29a124deb457d075a266/transformed/material-icons-core-release/res
+com.example.twodamin.app-graphics-path-1.0.1-42 /home/coder/.gradle/caches/8.14/transforms/e96407e2b9d9ffec920cf8672ddd5758/transformed/graphics-path-1.0.1/res
+com.example.twodamin.app-navigation-common-2.7.7-43 /home/coder/.gradle/caches/8.14/transforms/f4a0d4fa22c9304f5370016056ec26c4/transformed/navigation-common-2.7.7/res
+com.example.twodamin.app-lifecycle-process-2.9.4-44 /home/coder/.gradle/caches/8.14/transforms/f51e69597a2b1a6d27c4ae42f8ca66b5/transformed/lifecycle-process-2.9.4/res
+com.example.twodamin.app-profileinstaller-1.4.0-45 /home/coder/.gradle/caches/8.14/transforms/f6879ad01daf2ccf60be05ffddc04c72/transformed/profileinstaller-1.4.0/res
+com.example.twodamin.app-savedstate-ktx-1.3.2-46 /home/coder/.gradle/caches/8.14/transforms/f83edd92fb148267b414074b68d48541/transformed/savedstate-ktx-1.3.2/res
+com.example.twodamin.app-pngs-47 /home/coder/Desktop/Two D/kotlin/2dAdminPanel-master/app/build/generated/res/pngs/debug
+com.example.twodamin.app-resValues-48 /home/coder/Desktop/Two D/kotlin/2dAdminPanel-master/app/build/generated/res/resValues/debug
+com.example.twodamin.app-updated_navigation_xml-49 /home/coder/Desktop/Two D/kotlin/2dAdminPanel-master/app/build/generated/updated_navigation_xml/debug
+com.example.twodamin.app-packageDebugResources-50 /home/coder/Desktop/Two D/kotlin/2dAdminPanel-master/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.example.twodamin.app-packageDebugResources-51 /home/coder/Desktop/Two D/kotlin/2dAdminPanel-master/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.example.twodamin.app-debug-52 /home/coder/Desktop/Two D/kotlin/2dAdminPanel-master/app/build/intermediates/merged_res/debug/mergeDebugResources
+com.example.twodamin.app-debug-53 /home/coder/Desktop/Two D/kotlin/2dAdminPanel-master/app/src/debug/res
+com.example.twodamin.app-main-54 /home/coder/Desktop/Two D/kotlin/2dAdminPanel-master/app/src/main/res

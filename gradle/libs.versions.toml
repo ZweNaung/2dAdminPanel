@@ -13,6 +13,7 @@ roomKtx = "2.8.4"
 foundation = "1.10.0"
 uiText = "1.10.0"
 roomCompilerProcessingTesting = "2.8.4"
+ksp = "2.0.21-1.0.25"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -39,4 +40,4 @@ androidx-room-compiler-processing-testing = { group = "androidx.room", name = "r
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
