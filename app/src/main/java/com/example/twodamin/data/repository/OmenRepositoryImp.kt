@@ -2,6 +2,7 @@ package com.example.twodamin.data.repository
 
 import com.example.twodamin.data.remote.api.OmenApiService
 import com.example.twodamin.data.remote.dto.ChildUpdateRequestBody
+import com.example.twodamin.data.remote.dto.OmenDeleteAllResponseDto
 import com.example.twodamin.data.remote.dto.OmenDeleteResponseDto
 import com.example.twodamin.data.remote.dto.OmenUpdateResponseDto
 import com.example.twodamin.data.remote.dto.OmenUploadResponseDto
@@ -40,6 +41,10 @@ class OmenRepositoryImp(private val omenApiService: OmenApiService): OmenReposit
             name = name,
             image = image
         )
+    }
+
+    override suspend fun deleteAllOmens(): OmenDeleteAllResponseDto {
+        return omenApiService.deleteAllOmens()
     }
 }
 

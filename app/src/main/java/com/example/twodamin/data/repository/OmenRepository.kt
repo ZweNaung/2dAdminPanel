@@ -1,5 +1,6 @@
 package com.example.twodamin.data.repository
 
+import com.example.twodamin.data.remote.dto.OmenDeleteAllResponseDto
 import com.example.twodamin.data.remote.dto.OmenDeleteResponseDto
 import com.example.twodamin.data.remote.dto.OmenUpdateResponseDto
 import com.example.twodamin.data.remote.dto.OmenUploadResponseDto
@@ -25,6 +26,9 @@ interface OmenRepository {
         name: RequestBody?,
         image: MultipartBody.Part?
     ): OmenUpdateResponseDto
+
+
+    suspend fun deleteAllOmens(): OmenDeleteAllResponseDto
 }
 
 

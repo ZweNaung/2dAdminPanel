@@ -11,6 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import coil.compose.rememberAsyncImagePainter
+import com.example.twodamin.data.remote.dto.OmenDeleteAllResponseDto
 import com.example.twodamin.data.remote.dto.OmenDeleteResponseDto
 import com.example.twodamin.data.remote.dto.OmenUpdateResponseDto
 import com.example.twodamin.data.remote.dto.OmenUploadResponseDto
@@ -45,6 +46,8 @@ class OmenViewModel(private val repository: OmenRepository): ViewModel() {
     private var _updateState = MutableStateFlow<Resource<OmenUpdateResponseDto.Data?>>(Resource.Idle())
     val updateState : StateFlow<Resource<OmenUpdateResponseDto.Data?>> = _updateState
 
+    private val _deleteAllState = MutableStateFlow<Resource<OmenDeleteAllResponseDto>>(Resource.Idle())
+    val deleteAllState: StateFlow<Resource<OmenDeleteAllResponseDto>> = _deleteAllState
 
     //Get All Data
     fun fetchGetAllOmens(){
@@ -185,6 +188,35 @@ class OmenViewModel(private val repository: OmenRepository): ViewModel() {
                 Log.d("update", { e.message }.toString())
                 }
         }
+    }
+
+    // Delete All Function
+    fun deleteAllOmens() {
+        viewModelScope.launch {
+            _deleteAllState.value = Resource.Loading()
+            try {
+                val response = repository.deleteAllOmens()
+
+                if (response.success) {
+                    _deleteAllState.value = Resource.Success(response)
+                    // Data အကုန်ဖျက်ပြီးရင် List ကိုပြန် update လုပ်ဖို့လိုပါတယ်
+                    fetchGetAllOmens()
+                } else {
+                    _deleteAllState.value = Resource.Error(message = response.message)
+                }
+            } catch (e: HttpException) {
+                val message = when (e.code()) {
+                    500 -> "500 Server Error"
+                    else -> "HTTP Error: ${e.code()}"
+                }
+                _deleteAllState.value = Resource.Error(message = message)
+            } catch (e: Exception) {
+                _deleteAllState.value = Resource.Error(message = "Delete All Error: ${e.message}")
+            }
+        }
+    }
+    fun resetDeleteAllState() {
+        _deleteAllState.value = Resource.Idle()
     }
     fun resetUpdateState() {
         _updateState.value = Resource.Idle()

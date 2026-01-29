@@ -1,5 +1,6 @@
 package com.example.twodamin.data.remote.api
 
+import com.example.twodamin.data.remote.dto.OmenDeleteAllResponseDto
 import com.example.twodamin.data.remote.dto.OmenDeleteResponseDto
 import com.example.twodamin.data.remote.dto.OmenUpdateResponseDto
 import com.example.twodamin.data.remote.dto.OmenUploadResponseDto
@@ -38,5 +39,9 @@ interface OmenApiService {
         @Path("id") omenId: String,
         @Part("name") name: RequestBody?,
         @Part image: MultipartBody.Part?): OmenUpdateResponseDto
+
+    // Delete All Omens
+    @DELETE("omen/deleteall")
+    suspend fun deleteAllOmens(): OmenDeleteAllResponseDto
 
 }

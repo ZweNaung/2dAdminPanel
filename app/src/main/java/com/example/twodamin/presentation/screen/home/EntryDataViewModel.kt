@@ -25,7 +25,7 @@ class EntryDataViewModel : ViewModel(){
                     "11:00" -> "11am"
                     "12:00" -> "12pm"
                     "3:00" -> "3pm"
-                    "4:00" -> "4pm"
+                    "4:30" -> "4pm"
                     else -> "Unknown"
                 }
                 val response =inputDataApiService.getInsert(
